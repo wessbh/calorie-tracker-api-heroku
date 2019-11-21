@@ -47,7 +47,7 @@ db.connect((err) => {
     }
     console.log('mysql connected...')
 });
-app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
+app.get('/favicon.ico', (req, res) => res.status(204));
 
 //register a new user
 app.post('/register', function (req, res) {
