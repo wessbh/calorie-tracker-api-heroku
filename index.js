@@ -1,4 +1,6 @@
 var express = require('express');
+var favicon = require('serve-favicon');
+var path = require('path');
 const crypto = require('crypto');
 const algorithm = 'aes-256-cbc';
 var passwordHash = require('password-hash');
@@ -15,7 +17,7 @@ app.use('*', cors());
 app.use(morgan('dev'));
 var PORT = process.env.PORT || 3000;
 var connection;
-
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 
 var dateNow = new Date();
 var dd = dateNow.getDate();
@@ -45,6 +47,8 @@ db.connect((err) => {
     }
     console.log('mysql connected...')
 });
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
+
 //register a new user
 app.post('/register', function (req, res) {
 
